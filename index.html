@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Samira Alimova — Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #8096A9;
+      --slate:   #869AAD;
+      --mid:     #B2BAC2;
+      --light:   #B5BEC8;
+      --pale:    #CECFD2;
+      --soft:    #D7D5D5;
+      --ghost:   #DEDCDD;
+      --cream:   #DDD9D9;
+      --ink:     #2b3340;
+      --white:   #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--ghost);
+      color: var(--ink);
+      margin: 0;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--navy);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .brand {
+      font-family: 'Playfair Display', serif;
+      color: var(--white);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-decoration: none;
+    }
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      color: var(--ghost);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul li a:hover { color: var(--white); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 92vh;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 50%, var(--mid) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(255,255,255,0.08) 0%, transparent 60%);
+    }
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--pale);
+      margin-bottom: 1.2rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+    .hero-name span {
+      color: var(--pale);
+    }
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 300;
+      color: var(--ghost);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.65;
+    }
+    .hero-badges {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .badge-pill {
+      background: rgba(255,255,255,0.15);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--white);
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      padding: 0.85rem 2.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+      color: var(--navy);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 5rem 1.5rem;
+    }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--navy);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      line-height: 1.15;
+    }
+    .section-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--navy);
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #4a5568;
+      margin-bottom: 1rem;
+    }
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .stat-card {
+      background: var(--ghost);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid var(--soft);
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy);
+      display: block;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--ghost); }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .skill-category {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 1.75rem;
+      border: 1px solid var(--soft);
+    }
+    .skill-category-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 1.1rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      background: var(--ghost);
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      border: 1px solid var(--soft);
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--white); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .project-card {
+      background: var(--ghost);
+      border-radius: 14px;
+      padding: 2rem;
+      border: 1px solid var(--soft);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+      color: inherit;
+    }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(128,150,169,0.18);
+      color: inherit;
+    }
+    .project-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      color: #6b7280;
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 1.25rem;
+    }
+    .project-link {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--slate) 100%);
+      text-align: center;
+    }
+    #contact .section-label { color: var(--pale); }
+    #contact .section-title { color: var(--white); }
+    #contact .section-divider { background: var(--pale); margin: 0 auto 2.5rem; }
+    .contact-sub {
+      color: var(--ghost);
+      font-size: 1rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.65;
+    }
+    .contact-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .contact-btn.primary {
+      background: var(--white);
+      color: var(--navy);
+    }
+    .contact-btn.secondary {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255,255,255,0.4);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: var(--soft);
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+    }
+    footer a { color: var(--mid); text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      nav ul { gap: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="brand" href="#">SA</a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div style="position:relative; z-index:1;">
+      <p class="hero-eyebrow">Franklin Delano Roosevelt High School · Class of 2026</p>
+      <h1 class="hero-name">Samira<br><span>Alimova</span></h1>
+      <p class="hero-tagline">Computer Science &amp; Finance · FinTech · Investment Analytics · Building solutions where data meets decision-making.</p>
+      <div class="hero-badges">
+        <span class="badge-pill">AP Computer Science A</span>
+        <span class="badge-pill">Finance &amp; Investing</span>
+        <span class="badge-pill">Data Analytics</span>
+        <span class="badge-pill">FinTech</span>
+      </div>
+      <a href="#projects" class="hero-cta">View My Work</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Where Finance Meets Technology</h2>
+        <div class="section-divider"></div>
+        <p>I'm a rising senior at Franklin Delano Roosevelt High School with a strong interest in the intersection of Computer Science and Finance. I enjoy analyzing problems and using technology and data to create meaningful solutions.</p>
+        <p>I'm especially drawn to investing, analytics, and FinTech — fields where logical thinking and creativity come together. I'm committed to continuous learning and applying my skills to make a positive impact in my community.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <span class="stat-number">CS</span>
+          <span class="stat-label">+ Finance</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">📈</span>
+          <span class="stat-label">FinTech Focus</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">AP</span>
+          <span class="stat-label">CS A Student</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-number">∞</span>
+          <span class="stat-label">Always Learning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div style="max-width:960px; margin:0 auto;">
+      <p class="section-label">What I Know</p>
+      <h2 class="section-title">Skills &amp; Tools</h2>
+      <div class="section-divider"></div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <div class="skill-category-title">💻 Programming Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">🛠 Frameworks &amp; Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Bootstrap</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Excel</span>
+            <span class="skill-tag">Google Sheets</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">📊 Finance &amp; Analytics</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Investment Analytics</span>
+            <span class="skill-tag">Financial Modeling</span>
+            <span class="skill-tag">Data Analysis</span>
+            <span class="skill-tag">Market Research</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-category-title">🤖 Emerging Tech</div>
+          <div class="skill-tags">
+            <span class="skill-tag">AI Literacy</span>
+            <span class="skill-tag">FinTech</span>
+            <span class="skill-tag">Prompt Engineering</span>
+            <span class="skill-tag">Data-Driven Thinking</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div style="max-width:960px; margin:0 auto;">
+      <p class="section-label">My Work</p>
+      <h2 class="section-title">Projects</h2>
+      <div class="section-divider"></div>
+      <div class="projects-grid">
+
+        <div class="project-card">
+          <div class="project-icon">☕</div>
+          <div class="project-title">AP CSA 2026 FRQs</div>
+          <p class="project-desc">Java solutions to the AP Computer Science A 2026 Free Response Questions, demonstrating core OOP concepts, algorithms, and problem-solving techniques.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Java</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">OOP</span>
+          </div>
+          <a href="https://github.com/SamiraAlimova/ap-csa-2026-frqs" target="_blank" class="project-link">View on GitHub →</a>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🤖</div>
+          <div class="project-title">Robot</div>
+          <p class="project-desc">A creative p5.js sketch bringing a robot to life through code — combining shapes, colors, and programming logic to design an original character.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">JavaScript</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🏳️</div>
+          <div class="project-title">Personal Flag</div>
+          <p class="project-desc">Designed and coded a personal flag using p5.js, expressing identity through custom shapes, patterns, and a meaningful color palette.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Design</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🎆</div>
+          <div class="project-title">NYE Celebration</div>
+          <p class="project-desc">A New Year's Eve animated sketch built with p5.js — featuring countdown effects and celebratory visuals to ring in the new year.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Animation</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🎊</div>
+          <div class="project-title">Confetti</div>
+          <p class="project-desc">An interactive confetti animation in p5.js using particle systems and randomization to create a colorful, dynamic celebration effect.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Particles</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🔨</div>
+          <div class="project-title">Whack-a-Mole</div>
+          <p class="project-desc">A fully playable Whack-a-Mole game built with p5.js — featuring a timer, score counter, and randomized mole appearances for replayable fun.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Game Dev</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🎨</div>
+          <div class="project-title">Genuary</div>
+          <p class="project-desc">A series of daily creative coding challenges from the Genuary event, each exploring a different generative art prompt using p5.js.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Generative Art</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🌡️</div>
+          <div class="project-title">Temperatures</div>
+          <p class="project-desc">A data visualization project using p5.js to display and compare temperature data — turning numbers into meaningful, readable graphics.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Data Viz</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🍽️</div>
+          <div class="project-title">Restaurant</div>
+          <p class="project-desc">A restaurant-themed p5.js project featuring a creative visual scene or interactive menu, combining design thinking with creative coding.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">JavaScript</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+        <div class="project-card">
+          <div class="project-icon">🌍</div>
+          <div class="project-title">Earth Day</div>
+          <p class="project-desc">A p5.js sketch created for Earth Day, using art and code to raise awareness about our planet through an animated environmental scene.</p>
+          <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">p5.js</span>
+            <span style="background:var(--soft);color:var(--ink);border-radius:4px;padding:0.2rem 0.6rem;font-size:0.75rem;font-weight:600;">Animation</span>
+          </div>
+          <span class="project-link" style="color:var(--mid);cursor:default;">Coming to GitHub soon</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="section-divider"></div>
+    <p class="contact-sub">Whether you're interested in collaborating, have a question, or just want to say hi — my inbox is always open.</p>
+    <div class="contact-links">
+      <a class="contact-btn primary" href="mailto:samiraalimova89@gmail.com">✉ Email Me</a>
+      <a class="contact-btn secondary" href="https://github.com/SamiraAlimova" target="_blank">⌥ GitHub Profile</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Samira Alimova · Built with Bootstrap 5 &amp; deployed on <a href="https://pages.github.com" target="_blank">GitHub Pages</a></p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
